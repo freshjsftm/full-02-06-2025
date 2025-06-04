@@ -6,7 +6,7 @@ module.exports.registerUser = async (req, res, next) => {
   try {
     const { name, email, password, role } = req.body;
 
-    const exists = await User.findOne({ email });   
+    const exists = await User.findOne({ email });
     if (exists) {
       throw createError(409, 'Email already registered');
     }
@@ -15,6 +15,26 @@ module.exports.registerUser = async (req, res, next) => {
     const user = await User.create({ name, email, role, password: hash });
 
     res.status(201).send({ data: user });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.loginUser = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      throw createError(401, 'Invalid data');
+    }
+
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+      throw createError(401, 'Invalid data');
+    }
+
+    res.status(200).send({data: user})
   } catch (error) {
     next(error);
   }
