@@ -15,7 +15,11 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// delete password
+userSchema.methods.toJSON = function(){
+  const obj = this.toObject();
+  delete obj.password;
+  return obj;
+}
 
 const User = mongoose.model('User', userSchema);
 
