@@ -75,8 +75,11 @@ module.exports.updateUser = async (req, res, next) => {
     if (!user) {
       throw createError(404, 'User not found');
     }
-    res.status(200).send({data: user})
+    res.status(200).send({ data: user });
   } catch (error) {
+    if(error.code === 11000){
+      return next(createError(409, 'Email already exists'))
+    }
     next(error);
   }
 };

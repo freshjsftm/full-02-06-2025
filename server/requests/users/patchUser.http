@@ -3,6 +3,5 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDA2NzZiNzJmMWRjN2NiZDM4ZjU0MiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc0OTQ3ODg3MCwiZXhwIjoxNzUwMDgzNjcwfQ.bf-irFLuIgcjzyPysoyy05fybRIhQz3lANhqYfI23qE
 
 {
-  "name": "alex44",
-  "password": "alex44alex44"
+   "email": "user02@gmail.com"
 }
