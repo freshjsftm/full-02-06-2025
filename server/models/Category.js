@@ -10,7 +10,14 @@ const categorySchema = new mongoose.Schema({
   },
 });
 
-// віртуальне посилання на продукти
+categorySchema.virtual('products', {
+  ref: 'Product',
+  localField: '_id',
+  foreignField: 'category',
+});
+
+categorySchema.set('toObject', { virtual: true });
+categorySchema.set('toJSON', { virtual: true });
 
 const Category = mongoose.model('Category', categorySchema);
 

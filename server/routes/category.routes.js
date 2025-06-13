@@ -11,7 +11,6 @@ router.get('/', getAllCategories);
 router.get('/:idCategory', getCategoryById);
 
 router.post('/', auth, isAdmin, validate(categorySchema), createCategory);
-
 router.patch('/:idCategory', auth, isAdmin, validate(categorySchema), updateCategoryById);
 router.delete('/:idCategory', auth, isAdmin, deleteCategoryById);
 
