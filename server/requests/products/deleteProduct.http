@@ -1,2 +1,2 @@
-GET http://localhost:3000/users HTTP/1.1
+DELETE http://localhost:3000/products/68503079ea736b30b1c0c214 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDA1ZDRhYzU2Y2NiODg5OGViZDJmZiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1MDA4Mzc0OCwiZXhwIjoxNzUwNjg4NTQ4fQ.mE8hR3kLKoL2gPERAsVXCXGVoaxceltcUGattoekkQk
