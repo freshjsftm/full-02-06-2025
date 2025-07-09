@@ -11,8 +11,7 @@ module.exports.filterProducts = async (req, res, next) => {
         req.filter.price.$lt = Number(maxPrice);
       }
     }
-
-    if (availability) {     
+    if (availability) {
       req.filter.stockQty = {};
       if (availability === 'true') {
         req.filter.stockQty.$gte = 1;
@@ -20,15 +19,31 @@ module.exports.filterProducts = async (req, res, next) => {
         req.filter.stockQty.$eq = 0;
       }
     }
-
     if (category) {
       req.filter.category = category;
     }
-
     if (sale) {
       req.filter.isSale = sale === 'true';
     }
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
 
+module.exports.filterOrders = async (req, res, next) => {
+  try {
+    const { user, status, method } = req.query;
+    req.filter = {};
+    if (user) {
+      req.filter.user = user;
+    }
+    if (status) {
+      req.filter.status = status;
+    }
+    if (method) {
+      req.filter.shippingMethod = method.replace('_', ' ');
+    }
     next();
   } catch (error) {
     next(error);

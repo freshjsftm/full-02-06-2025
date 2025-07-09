@@ -1,0 +1,15 @@
+POST http://localhost:3000/orders HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDA2NGFlYzU2Y2NiODg5OGViZDMwMyIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc1MTkwMzY1MywiZXhwIjoxNzUyNTA4NDUzfQ.yYIRSS3QrX3fHNCNRxSVW3CUWnUo0STlHkzAqLsrRrQ
+
+{
+  "products":[
+    {
+      "productId": "685028e842680a04197d9a0a",
+      "quantity": 2
+    }
+  ],
+  "shippingPhone": "067-123-45-74",
+  "shippingPrice": 100,
+  "shippingMethod": "nova post"
+}

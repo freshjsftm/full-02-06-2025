@@ -37,7 +37,7 @@ module.exports.loginUser = async (req, res, next) => {
     const token = jwt.sign(
       { id: user._id, role: user.role },
       CONSTANTS.JWT_SECRET,
-      { expiresIn: '7d' }
+      { expiresIn: CONSTANTS.JWT_EXPIRES }
     );
 
     res.status(200).send({ data: { token, user } });
@@ -77,8 +77,8 @@ module.exports.updateUser = async (req, res, next) => {
     }
     res.status(200).send({ data: user });
   } catch (error) {
-    if(error.code === 11000){
-      return next(createError(409, 'Email already exists'))
+    if (error.code === 11000) {
+      return next(createError(409, 'Email already exists'));
     }
     next(error);
   }
