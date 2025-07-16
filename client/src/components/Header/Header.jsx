@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategoriesThunk } from '../../store/categoriesSlice';
 import styles from './Header.module.scss';
 
 const Header = () => {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
   const { categories, error, isLoading } = useSelector(
     (state) => state.categories
   );
@@ -21,6 +22,19 @@ const Header = () => {
   );
   return (
     <header>
+      <div className={styles['top-header']}>
+        {user ? (
+          <>
+            <span>Hi, {user?.name}</span>
+            <button>Logout</button>
+          </>
+        ) : (
+          <>
+            <Link to="/login">Sign in</Link> |{' '}
+            <Link to="/register">Sign up</Link>
+          </>
+        )}
+      </div>
       <nav>
         <ul className={styles['main-menu']}>
           <li>
