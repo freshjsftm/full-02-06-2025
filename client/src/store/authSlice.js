@@ -32,7 +32,7 @@ export const getAccountThunk = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const token = localStorage.getItem('token');
-      if(!token){
+      if (!token) {
         return thunkAPI.rejectWithValue('No token');
       }
       const response = await getAccount();
@@ -40,6 +40,13 @@ export const getAccountThunk = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
+  }
+);
+
+export const logoutUserThunk = createAsyncThunk(
+  'auth/logoutUserThunk',
+  async () => {
+    localStorage.removeItem('token');
   }
 );
 
@@ -58,6 +65,11 @@ const authSlice = createSlice({
   },
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(logoutUserThunk.fulfilled, (state) => {
+      state.user = null;
+      state.error = null;
+    });
+
     builder.addCase(registerUserThunk.pending, pendingCase);
     builder.addCase(loginUserThunk.pending, pendingCase);
     builder.addCase(getAccountThunk.pending, pendingCase);

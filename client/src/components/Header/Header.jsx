@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategoriesThunk } from '../../store/categoriesSlice';
+import { logoutUserThunk } from '../../store/authSlice';
 import styles from './Header.module.scss';
 
 const Header = () => {
@@ -20,13 +21,14 @@ const Header = () => {
       <NavLink to={`/categories/${category._id}`}>{category.name}</NavLink>
     </li>
   );
+  const logout = ()=>dispatch(logoutUserThunk())
   return (
     <header>
       <div className={styles['top-header']}>
         {user ? (
           <>
             <span>Hi, {user?.name}</span>
-            <button>Logout</button>
+            <button onClick={logout}>Logout</button>
           </>
         ) : (
           <>
