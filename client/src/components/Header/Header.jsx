@@ -8,9 +8,7 @@ import styles from './Header.module.scss';
 const Header = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  const { categories, error, isLoading } = useSelector(
-    (state) => state.categories
-  );
+  const { categories } = useSelector((state) => state.categories);
   useEffect(() => {
     if (categories?.length === 0) {
       dispatch(getAllCategoriesThunk());
@@ -21,13 +19,16 @@ const Header = () => {
       <NavLink to={`/categories/${category._id}`}>{category.name}</NavLink>
     </li>
   );
-  const logout = ()=>dispatch(logoutUserThunk())
+  const logout = () => dispatch(logoutUserThunk());
   return (
     <header>
       <div className={styles['top-header']}>
         {user ? (
           <>
             <span>Hi, {user?.name}</span>
+            {user?.role === 'admin' && (
+              <Link to="/admin-panel">Admin Panel</Link>
+            )}
             <button onClick={logout}>Logout</button>
           </>
         ) : (
@@ -42,8 +43,6 @@ const Header = () => {
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
-          {isLoading && <p>Loading</p>}
-          {error && <p>{error}</p>}
           {categories?.map(showCategory)}
         </ul>
       </nav>
