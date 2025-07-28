@@ -29,3 +29,8 @@ export const deleteCategory = (id) => apiClient.delete(`/categories/${id}`);
 
 // products
 export const getAllProducts = () => apiClient.get('/products');
+
+export const createProduct = (values) => apiClient.post('/products', values);
+export const updateProduct = (id, values) =>
+  apiClient.patch(`/products/${id}`, values);
+export const deleteProduct = (id) => apiClient.delete(`/products/${id}`);

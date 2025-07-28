@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getAllCategoriesThunk,
-} from '../../store/categoriesSlice';
+import { getAllCategoriesThunk } from '../../store/categoriesSlice';
 import AdminCategoriesForm from './AdminCategoriesForm';
 import AdminCategoryRow from './AdminCategoryRow';
-
 
 const AdminCategories = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -31,6 +28,7 @@ const AdminCategories = () => {
   const cancelForm = () => {
     setIsCreating(false);
   };
+
   const showCategory = (category) => (
     <AdminCategoryRow
       key={category._id}
