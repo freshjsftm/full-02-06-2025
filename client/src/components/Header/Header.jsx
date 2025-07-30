@@ -38,6 +38,10 @@ const Header = () => {
           </>
         )}
       </div>
+      <div>
+        <NavLink to="/">Logo</NavLink>
+        <NavLink to="/cart">Cart</NavLink>
+      </div>
       <nav>
         <ul className={styles['main-menu']}>
           <li>

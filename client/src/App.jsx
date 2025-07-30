@@ -10,6 +10,7 @@ import LoginForm from './components/Auth/LoginForm';
 import AdminPage from './pages/AdminPage';
 import AdminCategories from './components/Admin/AdminCategories';
 import AdminProducts from './components/Admin/AdminProducts';
+import CartPage from './pages/CartPage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,8 @@ const App = () => {
 
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
+
+          <Route path="/cart" element={<CartPage />} />
 
           <Route
             path="/admin-panel"
