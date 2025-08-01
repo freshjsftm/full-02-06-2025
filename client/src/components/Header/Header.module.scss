@@ -1,11 +1,38 @@
-
-.top-header{
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
+@use '/src/common/styles/colors' as *;
+.wrapper {
+  min-width: 560px;
+  max-width: 1300px;
+  width: 95%;
+  margin: auto;
+}
+a {
+  padding: 0.5em;
 }
 
-.main-menu{
+.cart:hover {
+  color: $primary;
+}
+
+.top-header,
+.middle-header {
   display: flex;
   gap: 10px;
+  padding: 0.5em;
+  align-items: center;
+}
+.top-header {
+  justify-content: flex-end;
+  font-size: 12px;
+}
+.middle-header {
+  justify-content: space-between;
+}
+
+.main-menu {
+  display: flex;
+  gap: 10px;
+  padding: 0.5em;
+  a:hover {
+    background-color: $grey100;
+  }
 }

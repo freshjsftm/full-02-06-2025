@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProductsThunk } from '../store/productsSlice';
 import ProductsList from '../components/ProductsList/ProductsList';
+import styles from './Pages.module.scss';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -10,8 +11,7 @@ const HomePage = () => {
     dispatch(getAllProductsThunk());
   }, [dispatch]);
   return (
-    <div>
-      <h1>Shop</h1>
+    <div className={styles.wrapper}>
       {error && <p>{error}</p>}
       {isLoading && <p>Loadin...</p>}
       <ProductsList products={products}/>

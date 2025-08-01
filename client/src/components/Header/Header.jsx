@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Icon } from '@mdi/react';
+import { mdiPurseOutline } from '@mdi/js';
 import { getAllCategoriesThunk } from '../../store/categoriesSlice';
 import { logoutUserThunk } from '../../store/authSlice';
 import styles from './Header.module.scss';
@@ -22,34 +24,40 @@ const Header = () => {
   const logout = () => dispatch(logoutUserThunk());
   return (
     <header>
-      <div className={styles['top-header']}>
-        {user ? (
-          <>
-            <span>Hi, {user?.name}</span>
-            {user?.role === 'admin' && (
-              <Link to="/admin-panel">Admin Panel</Link>
-            )}
-            <button onClick={logout}>Logout</button>
-          </>
-        ) : (
-          <>
-            <Link to="/login">Sign in</Link> |{' '}
-            <Link to="/register">Sign up</Link>
-          </>
-        )}
+      <div className={styles.wrapper}>
+        <div className={styles['top-header']}>
+          {user ? (
+            <>
+              <span>Hi, {user?.name}</span>
+              {user?.role === 'admin' && (
+                <Link to="/admin-panel">Admin Panel</Link>
+              )}
+              <button onClick={logout}>Logout</button>
+            </>
+          ) : (
+            <>
+              <Link to="/login">Sign in</Link> |{' '}
+              <Link to="/register">Sign up</Link>
+            </>
+          )}
+        </div>
+        <div className={styles['middle-header']}>
+          <NavLink className={styles.logo} to="/">
+            <img src="/logo.png" alt="" />
+          </NavLink>
+          <NavLink to="/cart"  className={styles.cart}>
+            <Icon path={mdiPurseOutline} size={1} />
+          </NavLink>
+        </div>
+        <nav>
+          <ul className={styles['main-menu']}>
+            <li>
+              <NavLink to="/">Home</NavLink>
+            </li>
+            {categories?.map(showCategory)}
+          </ul>
+        </nav>
       </div>
-      <div>
-        <NavLink to="/">Logo</NavLink>
-        <NavLink to="/cart">Cart</NavLink>
-      </div>
-      <nav>
-        <ul className={styles['main-menu']}>
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          {categories?.map(showCategory)}
-        </ul>
-      </nav>
     </header>
   );
 };

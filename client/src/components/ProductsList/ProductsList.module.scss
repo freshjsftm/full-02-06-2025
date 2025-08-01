@@ -3,7 +3,7 @@
 .products {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 12px;
   justify-content: center;
 }
 
@@ -11,15 +11,47 @@
   width: 312px;
   padding: 16px;
   border: 1px solid $grey100;
-}
+  position: relative;
+  border-radius: 8px;
+  * {
+    margin: 0;
+  }
+  &:hover {
+    border: 1px solid $primary;
+  }
+  h3{
+    color: $primary;
+  }
+  .pic {
+    width: 280px;
+    height: 280px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  .sale,
+  .cart,
+  .category {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+  }
 
-.pic {
-  width: 280px;
-  height: 280px;
-  background-color: $grey100;
-  img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .category {
+    top: 20px;
+    left: 20px;
+  }
+
+  .sale {
+    color: $primary;
+  }
+
+  .cart {
+    bottom: 20px;
+    &:hover {
+      color: $primary;
+    }
   }
 }

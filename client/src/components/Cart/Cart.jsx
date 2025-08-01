@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CartItem from './CartItem';
 import { clearCart } from '../../store/cartSlice';
+import CartDeliveryForm from './CartDeliveryForm';
+import styles from './Cart.module.scss';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -18,10 +20,13 @@ const Cart = () => {
   };
   return (
     <section>
-      {items?.length === 0 && <p>empty cart</p>}
-      <ul>{items?.map(showItem)}</ul>
-      {items?.length > 0 && <button onClick={handleClear}>clear cart</button>}
-      <p>total: {total.toFixed(2)} uah</p>
+      <div>
+        {items?.length === 0 && <p>empty cart</p>}
+        <ul>{items?.map(showItem)}</ul>
+        {items?.length > 0 && <button onClick={handleClear} className={styles.clear}>clear cart</button>}
+      </div>
+      {items?.length > 0 && <p>total: {total.toFixed(2)} uah</p>}
+      {items?.length > 0 && <CartDeliveryForm items={items}/>}
     </section>
   );
 };

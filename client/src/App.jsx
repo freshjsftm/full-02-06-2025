@@ -14,7 +14,7 @@ import CartPage from './pages/CartPage';
 
 const App = () => {
   const dispatch = useDispatch();
-  const { user, error, isLoading } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
   useEffect(() => {
     dispatch(getAccountThunk());
   }, [dispatch]);

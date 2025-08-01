@@ -24,13 +24,13 @@ const CartItem = (props) => {
     <li className={styles['cart-item']}>
       <h3>{item.title}</h3>
       <p>{item.price} uah</p>
-      <div>
+      <p>
         <button onClick={handleDecrement}>-</button>
         <span>{item.quantity}</span>
         <button onClick={handleIncrement}>+</button>
-      </div>
+      </p>
       <p>{(item.price * item.quantity).toFixed(2)} uah</p>
-      <button onClick={handleDelete}>delete from cart</button>
+      <button onClick={handleDelete}>x</button>
     </li>
   );
 };

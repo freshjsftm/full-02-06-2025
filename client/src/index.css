@@ -22,3 +22,10 @@ ul {
   padding: 0;
   list-style: none;
 }
+
+button {
+  border: none;
+  padding: 0.5em 2em;
+  border-radius: 16px;
+  cursor: pointer;
+}
