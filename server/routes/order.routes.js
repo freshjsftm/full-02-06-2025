@@ -11,6 +11,7 @@ const {
   getAccountOrders,
   getOrder,
   updateStatusOrder,
+  createCheckoutSession,
 } = require('../controllers/order.controller');
 const { paginate } = require('../middlewares/pagination.mw');
 const { filterOrders } = require('../middlewares/filter.mw');
@@ -30,5 +31,7 @@ router.patch(
   validate(updateStatusOrderSchema),
   updateStatusOrder
 );
+
+router.post('/create-checkout-session', createCheckoutSession);
 
 module.exports = router;

@@ -8,23 +8,31 @@
 }
 
 .product {
-  width: 312px;
+  width: 250px;
   padding: 16px;
   border: 1px solid $grey100;
   position: relative;
   border-radius: 8px;
+  @media screen and (min-width: 960px) {
+    width: 312px;
+    padding: 16px;
+  }
   * {
     margin: 0;
   }
   &:hover {
     border: 1px solid $primary;
   }
-  h3{
+  h3 {
     color: $primary;
   }
   .pic {
-    width: 280px;
-    height: 280px;
+    width: 200px;
+    height: 200px;
+    @media screen and (min-width: 960px) {
+      width: 280px;
+      height: 280px;
+    }
     img {
       width: 100%;
       height: 100%;

@@ -14,7 +14,7 @@ const CONSTANTS = {
   ORDER_STATUS: ['new', 'paid', 'confirm', 'shipped', 'delivered', 'canceled'],
   STRIPE_SECRET_KEY:
     'sk_test_51RrKlARL1VqIp3S35bvczI25FNtZTfUayn7QdIMHM26Z2oN1BMvG3LforCPgDQau3kQ3Nv8VYRvNUwWyxfHlF0Xc00LQkF27to',
-  CLIENT_URL: 'http://localhost:5173/',
+  CLIENT_URL: 'http://localhost:5173',
 };
 
 module.exports = CONSTANTS;
