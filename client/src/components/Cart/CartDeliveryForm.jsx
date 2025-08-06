@@ -57,7 +57,7 @@ const CartDeliveryForm = (props) => {
       {() => {
         return (
           <Form>
-            {error && <h3>{error}</h3>}
+            {error && <h3>{JSON.stringify(error)}</h3>}
             <label>
               <span>phone</span>
               <Field name="shippingPhone" type="tel" />
