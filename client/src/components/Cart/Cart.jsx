@@ -8,6 +8,7 @@ import styles from './Cart.module.scss';
 const Cart = () => {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.cart);
+  const { error } = useSelector((state) => state.orders);
 
   const total = items?.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -20,13 +21,18 @@ const Cart = () => {
   };
   return (
     <section>
+      {error && <h3>{error}</h3>}
       <div>
         {items?.length === 0 && <p>empty cart</p>}
         <ul>{items?.map(showItem)}</ul>
-        {items?.length > 0 && <button onClick={handleClear} className={styles.clear}>clear cart</button>}
+        {items?.length > 0 && (
+          <button onClick={handleClear} className={styles.clear}>
+            clear cart
+          </button>
+        )}
       </div>
       {items?.length > 0 && <p>total: {total.toFixed(2)} uah</p>}
-      {items?.length > 0 && <CartDeliveryForm items={items}/>}
+      {items?.length > 0 && <CartDeliveryForm items={items} />}
     </section>
   );
 };

@@ -47,7 +47,7 @@ module.exports.createOrder = async (req, res, next) => {
           throw createError(404, 'Product not found');
         }
         if (product.stockQty < quantity) {
-          throw createError(409, 'Not enough in stock ' + product.title);
+          throw createError(409, 'Not enough in stock ' + product.title + ', available '+product.stockQty);
         }
         product.stockQty -= quantity;
         await product.save();

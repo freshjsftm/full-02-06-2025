@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { loadStripe } from '@stripe/stripe-js';
 import CONSTANTS from '../../constants';
@@ -12,7 +12,6 @@ const stripePromise = loadStripe(CONSTANTS.STRIPE_SECRET_KEY);
 
 const CartDeliveryForm = (props) => {
   const { items } = props;
-  const { error } = useSelector((state) => state.orders);
   const dispatch = useDispatch();
   const onSubmit = async (values) => {
     try {
@@ -33,10 +32,7 @@ const CartDeliveryForm = (props) => {
         quantity: item.quantity,
       }));
 
-      const response = await createCheckoutSession(
-        order._id,
-        stripeProducts
-      );
+      const response = await createCheckoutSession(order._id, stripeProducts);
       await stripe.redirectToCheckout({ sessionId: response.data.id });
 
       dispatch(clearCart());
@@ -57,7 +53,6 @@ const CartDeliveryForm = (props) => {
       {() => {
         return (
           <Form>
-            {error && <h3>{JSON.stringify(error)}</h3>}
             <label>
               <span>phone</span>
               <Field name="shippingPhone" type="tel" />

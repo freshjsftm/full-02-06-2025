@@ -1,5 +1,5 @@
 const express = require('express');
-const { auth, isAdmin } = require('../middlewares/auth.mw');
+const { auth, isAdmin, canUpdateOrderStatus } = require('../middlewares/auth.mw');
 const { validate } = require('../middlewares/validate.mw');
 const {
   createOrderSchema,
@@ -27,7 +27,7 @@ router.get('/:orderId', auth, getOrder);
 router.patch(
   '/:orderId',
   auth,
-  isAdmin,
+  canUpdateOrderStatus,
   validate(updateStatusOrderSchema),
   updateStatusOrder
 );

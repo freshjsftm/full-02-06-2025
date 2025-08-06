@@ -17,6 +17,8 @@ apiClient.interceptors.request.use((config) => {
 export const createOrder = (values) => apiClient.post('/orders', values);
 export const createCheckoutSession = (id, products) =>
   apiClient.post('/orders/create-checkout-session', { id, products });
+export const updateOrderStatus = (id, status) =>
+  apiClient.patch(`/orders/${id}`, { status });
 
 //auth
 export const registerUser = (values) =>
