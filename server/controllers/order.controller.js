@@ -47,7 +47,13 @@ module.exports.createOrder = async (req, res, next) => {
           throw createError(404, 'Product not found');
         }
         if (product.stockQty < quantity) {
-          throw createError(409, 'Not enough in stock ' + product.title + ', available '+product.stockQty);
+          throw createError(
+            409,
+            'Not enough in stock ' +
+              product.title +
+              ', available ' +
+              product.stockQty
+          );
         }
         product.stockQty -= quantity;
         await product.save();
@@ -137,6 +143,10 @@ module.exports.updateStatusOrder = async (req, res, next) => {
     }
     order.status = status;
     await order.save();
+
+    await order.populate('user', 'email');
+    await order.populate('products.productId', 'title');
+
     res.status(200).send({ data: order });
   } catch (error) {
     next(error);

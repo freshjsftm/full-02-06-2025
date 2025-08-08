@@ -13,6 +13,7 @@ import AdminProducts from './components/Admin/AdminProducts';
 import CartPage from './pages/CartPage';
 import SuccessPage from './pages/SuccessPage';
 import CancelPage from './pages/CancelPage';
+import AdminOrders from './components/Admin/AdminOrders';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -54,6 +55,12 @@ const App = () => {
               path="/admin-panel/products"
               element={
                 user?.role === 'admin' ? <AdminProducts /> : <Navigate to="/" />
+              }
+            />
+            <Route
+              path="/admin-panel/orders"
+              element={
+                user?.role === 'admin' ? <AdminOrders /> : <Navigate to="/" />
               }
             />
           </Route>
