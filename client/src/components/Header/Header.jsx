@@ -11,6 +11,11 @@ const Header = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { categories } = useSelector((state) => state.categories);
+  const { items } = useSelector((state) => state.cart);
+  const total = items?.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
   useEffect(() => {
     if (categories?.length === 0) {
       dispatch(getAllCategoriesThunk());
@@ -45,8 +50,10 @@ const Header = () => {
           <NavLink className={styles.logo} to="/">
             <img src="/logo.png" alt="" />
           </NavLink>
-          <NavLink to="/cart"  className={styles.cart}>
+          <NavLink to="/cart" className={styles.cart}>
+            {items.length>0 && <span>{items.length}</span>}
             <Icon path={mdiPurseOutline} size={1} />
+            <span>{total.toFixed(2)} usd</span>
           </NavLink>
         </div>
         <nav>
