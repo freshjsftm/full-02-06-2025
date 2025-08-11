@@ -29,7 +29,7 @@ export const getAccount = () => apiClient.get('users/account');
 
 // categories
 export const getAllCategories = () => apiClient.get('/categories');
-
+export const getOneCategory = (id) => apiClient.get(`/categories/${id}`);
 export const createCategory = (values) => apiClient.post('/categories', values);
 export const updateCategory = (id, values) =>
   apiClient.patch(`/categories/${id}`, values);
