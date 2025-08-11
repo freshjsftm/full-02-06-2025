@@ -14,6 +14,7 @@ import CartPage from './pages/CartPage';
 import SuccessPage from './pages/SuccessPage';
 import CancelPage from './pages/CancelPage';
 import AdminOrders from './components/Admin/AdminOrders';
+import ProductPage from './pages/ProductPage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -34,6 +35,8 @@ const App = () => {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/success/:idOrder" element={<SuccessPage />} />
           <Route path="/cancel/:idOrder" element={<CancelPage />} />
+
+          <Route path='/products/:idProduct' element={<ProductPage />}/>
 
           <Route
             path="/admin-panel"

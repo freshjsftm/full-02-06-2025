@@ -1,0 +1,21 @@
+.product {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 30vh;
+  > div {
+    width: 50%;
+  }
+}
+.images {
+  div,
+  img {
+    height: 100%;
+  }
+  div > div > div:first-child {
+    height: 30vh;
+  }
+}
+.info {
+  padding-left: 50px;
+}

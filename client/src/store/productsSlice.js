@@ -4,8 +4,21 @@ import {
   createProduct,
   updateProduct,
   deleteProduct,
+  getOneProduct,
 } from '../api';
 import { pendingCase, rejectedCase } from './functions';
+
+export const getOneProductThunk = createAsyncThunk(
+  'products/getOneProductThunk',
+  async (id, thunkAPI) => {
+    try {
+      const response = await getOneProduct(id);
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error?.message);
+    }
+  }
+);
 
 export const getAllProductsThunk = createAsyncThunk(
   'products/getAllProductsThunk',
@@ -61,9 +74,18 @@ const productsSlice = createSlice({
     products: [],
     error: null,
     isLoading: false,
+    selectedProduct: null,
   },
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(getOneProductThunk.pending, pendingCase);
+    builder.addCase(getOneProductThunk.rejected, rejectedCase);
+    builder.addCase(getOneProductThunk.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.selectedProduct = action.payload;
+    });
+
     builder.addCase(createProductThunk.pending, pendingCase);
     builder.addCase(createProductThunk.rejected, rejectedCase);
     builder.addCase(createProductThunk.fulfilled, (state, action) => {
