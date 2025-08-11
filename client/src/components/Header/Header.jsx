@@ -51,9 +51,12 @@ const Header = () => {
             <img src="/logo.png" alt="" />
           </NavLink>
           <NavLink to="/cart" className={styles.cart}>
-            {items.length>0 && <span>{items.length}</span>}
-            <Icon path={mdiPurseOutline} size={1} />
-            <span>{total.toFixed(2)} usd</span>
+            <span className={styles.badge}>{items.length}</span>
+            <Icon path={mdiPurseOutline} size={2} />
+            <div className={styles['cart-info']}>
+              <div>Shopping cart: </div>
+              <div className={styles.price}>{total.toFixed(2)} usd</div>
+            </div>
           </NavLink>
         </div>
         <nav>

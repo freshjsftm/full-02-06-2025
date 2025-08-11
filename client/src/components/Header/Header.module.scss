@@ -9,8 +9,35 @@ a {
   padding: 0.5em;
 }
 
-.cart:hover {
-  color: $primary;
+.cart {
+  position: relative;
+  display: flex;
+  &:hover {
+    color: $primary;
+    .badge {
+      background-color: $primary;
+    }
+  }
+  .badge {
+    position: absolute;
+    left: 30px;
+    top: 6px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid white;
+    background-color: $succeess-dark;
+    color: white;
+    text-align: center;
+    line-height: 26px;
+  }
+  .cart-info {
+    padding-left: 0.5em;
+    font-size: 12px;
+  }
+  .price {
+    font-size: 20px;
+  }
 }
 
 .top-header,
