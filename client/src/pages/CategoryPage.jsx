@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getOneCategoryThunk } from '../store/categoriesSlice';
 import ProductsList from '../components/ProductsList/ProductsList';
+import styles from './Pages.module.scss';
 
 const CategoryPage = () => {
   const dispatch = useDispatch();
@@ -26,14 +27,14 @@ const CategoryPage = () => {
   }
 
   return (
-    <div>
-      <h2>{selectedCategory?.name}</h2>
+    <section  className={styles.wrapper}>
+      <h2 className={styles['page-name']}>{selectedCategory?.name}</h2>
       {selectedCategory?.products?.length > 0 ? (
         <ProductsList products={selectedCategory?.products} />
       ) : (
         <p>empty</p>
       )}
-    </div>
+    </section>
   );
 };
 
