@@ -20,6 +20,7 @@ export const createCheckoutSession = (id, products) =>
 export const updateOrderStatus = (id, status) =>
   apiClient.patch(`/orders/${id}`, { status });
 export const getOrdersForAdmin = () => apiClient.get('/orders');
+export const getAccountOrders = () => apiClient.get('/orders/account');
 
 //auth
 export const registerUser = (values) =>
