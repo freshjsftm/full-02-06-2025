@@ -33,7 +33,7 @@ const Header = () => {
         <div className={styles['top-header']}>
           {user ? (
             <>
-              <span>Hi, {user?.name}</span>
+              <Link to="/account">Hi, {user?.name}</Link>
               {user?.role === 'admin' && (
                 <Link to="/admin-panel">Admin Panel</Link>
               )}

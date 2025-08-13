@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getOneProductThunk } from '../store/productsSlice';
 import Product from '../components/Product/Product';
+import styles from './Pages.module.scss';
 
 const ProductPage = () => {
   const { idProduct } = useParams();
@@ -17,7 +18,7 @@ const ProductPage = () => {
     return <p>404</p>
   }
   return (
-    <section>
+    <section className={styles.wrapper}>
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       <Product product={selectedProduct}/>

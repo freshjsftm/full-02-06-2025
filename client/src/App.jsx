@@ -16,6 +16,7 @@ import CancelPage from './pages/CancelPage';
 import AdminOrders from './components/Admin/AdminOrders';
 import ProductPage from './pages/ProductPage';
 import CategoryPage from './pages/CategoryPage';
+import ProfilePage from './pages/ProfilePage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const App = () => {
 
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
+          <Route path='/account' element={<ProfilePage />} />
 
           <Route path="/cart" element={<CartPage />} />
           <Route path="/success/:idOrder" element={<SuccessPage />} />

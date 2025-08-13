@@ -11,11 +11,11 @@ const HomePage = () => {
     dispatch(getAllProductsThunk());
   }, [dispatch]);
   return (
-    <div className={styles.wrapper}>
+    <section className={styles.wrapper}>
       {error && <p>{error}</p>}
       {isLoading && <p>Loadin...</p>}
       <ProductsList products={products}/>
-    </div>
+    </section>
   );
 };
 
