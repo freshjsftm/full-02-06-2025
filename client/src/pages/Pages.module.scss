@@ -56,7 +56,8 @@
 
 .admin-menu {
   display: flex;
-  a:hover {
+  a:hover,
+  .active {
     color: $primary;
   }
 }

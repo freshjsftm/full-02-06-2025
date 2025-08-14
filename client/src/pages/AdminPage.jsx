@@ -8,13 +8,28 @@ const AdminPage = () => {
       <h2>Admin Panel</h2>
       <ul className={styles['admin-menu']}>
         <li>
-          <NavLink to="/admin-panel/categories">Categories</NavLink>
+          <NavLink
+            to="/admin-panel/categories"
+            className={({ isActive }) => (isActive ? styles.active : '')}
+          >
+            Categories
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/admin-panel/products">Products</NavLink>
+          <NavLink
+            to="/admin-panel/products"
+            className={({ isActive }) => (isActive ? styles.active : '')}
+          >
+            Products
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/admin-panel/orders">Orders</NavLink>
+          <NavLink
+            to="/admin-panel/orders"
+            className={({ isActive }) => (isActive ? styles.active : '')}
+          >
+            Orders
+          </NavLink>
         </li>
       </ul>
       <Outlet />

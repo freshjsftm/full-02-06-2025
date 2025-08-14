@@ -23,7 +23,12 @@ const Header = () => {
   }, [dispatch, categories?.length]);
   const showCategory = (category) => (
     <li key={category._id}>
-      <NavLink to={`/categories/${category._id}`}>{category.name}</NavLink>
+      <NavLink
+        to={`/categories/${category._id}`}
+        className={({ isActive }) => (isActive ? styles.active : '')}
+      >
+        {category.name}
+      </NavLink>
     </li>
   );
   const logout = () => dispatch(logoutUserThunk());
@@ -33,16 +38,37 @@ const Header = () => {
         <div className={styles['top-header']}>
           {user ? (
             <>
-              <Link to="/account">Hi, {user?.name}</Link>
+              <NavLink
+                to="/account"
+                className={({ isActive }) => (isActive ? styles.active : '')}
+              >
+                Hi, {user?.name}
+              </NavLink>
               {user?.role === 'admin' && (
-                <Link to="/admin-panel">Admin Panel</Link>
+                <NavLink
+                  to="/admin-panel"
+                  className={({ isActive }) => (isActive ? styles.active : '')}
+                >
+                  Admin Panel
+                </NavLink>
               )}
               <button onClick={logout}>Logout</button>
             </>
           ) : (
             <>
-              <Link to="/login">Sign in</Link> |{' '}
-              <Link to="/register">Sign up</Link>
+              <NavLink
+                to="/login"
+                className={({ isActive }) => (isActive ? styles.active : '')}
+              >
+                Sign in
+              </NavLink>{' '}
+              |{' '}
+              <NavLink
+                to="/register"
+                className={({ isActive }) => (isActive ? styles.active : '')}
+              >
+                Sign up
+              </NavLink>
             </>
           )}
         </div>
@@ -62,7 +88,12 @@ const Header = () => {
         <nav>
           <ul className={styles['main-menu']}>
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? styles.active : '')}
+              >
+                Home
+              </NavLink>
             </li>
             {categories?.map(showCategory)}
           </ul>

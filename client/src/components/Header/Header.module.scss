@@ -9,6 +9,11 @@ a {
   padding: 0.5em;
 }
 
+.active {
+  background-color: $primary;
+  color: $white;
+}
+
 .cart {
   position: relative;
   display: flex;
@@ -59,7 +64,8 @@ a {
   display: flex;
   gap: 10px;
   padding: 0.5em;
-  a:hover {
-    background-color: $grey100;
-  }
+}
+
+a:hover {
+  color: $primary;
 }
