@@ -1,20 +1,20 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import styles from './Pages.module.scss';
 
 const AdminPage = () => {
   return (
     <div className={styles.wrapper}>
       <h2>Admin Panel</h2>
-      <ul>
+      <ul className={styles['admin-menu']}>
         <li>
-          <Link to="/admin-panel/categories">Categories</Link>
+          <NavLink to="/admin-panel/categories">Categories</NavLink>
         </li>
         <li>
-          <Link to="/admin-panel/products">Products</Link>
+          <NavLink to="/admin-panel/products">Products</NavLink>
         </li>
         <li>
-          <Link to="/admin-panel/orders">Orders</Link>
+          <NavLink to="/admin-panel/orders">Orders</NavLink>
         </li>
       </ul>
       <Outlet />
