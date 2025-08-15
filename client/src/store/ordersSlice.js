@@ -4,8 +4,21 @@ import {
   updateOrderStatus,
   getOrdersForAdmin,
   getAccountOrders,
+  getOrderById,
 } from '../api';
 import { pendingCase, rejectedCase } from './functions';
+
+export const getOrderByIdThunk = createAsyncThunk(
+  'orders/getOrderByIdThunk',
+  async (id, thunkAPI) => {
+    try {
+      const response = await getOrderById(id);
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error?.message);
+    }
+  }
+);
 
 export const getAccountOrdersThunk = createAsyncThunk(
   'orders/getAccountOrdersThunk',
@@ -61,11 +74,19 @@ const ordersSlice = createSlice({
   initialState: {
     orders: [],
     ordersAccount: [],
+    selectedOrder: null,
     error: null,
     isLoading: false,
   },
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(getOrderByIdThunk.pending, pendingCase);
+    builder.addCase(getOrderByIdThunk.rejected, rejectedCase);
+    builder.addCase(getOrderByIdThunk.fulfilled, (state, action) => {
+      state.error = null;
+      state.isLoading = false;
+      state.selectedOrder = action.payload;
+    });
     builder.addCase(getAccountOrdersThunk.pending, pendingCase);
     builder.addCase(getAccountOrdersThunk.rejected, rejectedCase);
     builder.addCase(getAccountOrdersThunk.fulfilled, (state, action) => {

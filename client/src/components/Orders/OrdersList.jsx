@@ -2,8 +2,8 @@ import React from 'react';
 import OrderRow from './OrderRow';
 
 const OrdersList = (props) => {
-  const { orders } = props;
-  const showOrderRow = (order) => <OrderRow key={order._id} order={order} />;
+  const { orders, setIdOrder } = props;
+  const showOrderRow = (order) => <OrderRow key={order._id} order={order}  setIdOrder={setIdOrder}/>;
   return (
     <table>
       <thead>

@@ -21,6 +21,7 @@ export const updateOrderStatus = (id, status) =>
   apiClient.patch(`/orders/${id}`, { status });
 export const getOrdersForAdmin = () => apiClient.get('/orders');
 export const getAccountOrders = () => apiClient.get('/orders/account');
+export const getOrderById = (id) => apiClient.get(`/orders/${id}`);
 
 //auth
 export const registerUser = (values) =>
