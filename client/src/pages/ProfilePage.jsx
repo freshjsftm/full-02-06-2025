@@ -6,6 +6,7 @@ import { getAccountOrdersThunk } from '../store/ordersSlice';
 import OrdersList from '../components/Orders/OrdersList';
 import styles from './Pages.module.scss';
 import OrderDetail from '../components/Orders/OrderDetail';
+import UpdateUserForm from '../components/Auth/UpdateUserForm';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const ProfilePage = () => {
     error: errorOrders,
     isLoading,
   } = useSelector((state) => state.orders);
+  const [isUpdate, setIsUpdate] = useState(false);
 
   useEffect(() => {
     if (!user) {
@@ -30,6 +32,10 @@ const ProfilePage = () => {
     }
   }, [dispatch, ordersAccount?.length]);
 
+  const handleChange = () => {
+    setIsUpdate(true);
+  };
+
   if (error) {
     navigate('/login');
   }
@@ -37,10 +43,18 @@ const ProfilePage = () => {
     <section className={styles.wrapper}>
       <div className={styles['flex-box']}>
         <article className={styles['personal-info']}>
-          <h2>{user?.name}</h2>
-          <p>{user?.email}</p>
-          <p>{user?.role}</p>
+          {isUpdate ? (
+            <UpdateUserForm setIsUpdate={setIsUpdate}/>
+          ) : (
+            <div>
+              <h2>{user?.name}</h2>
+              <p>{user?.email}</p>
+              <p>{user?.role}</p>
+              <button onClick={handleChange}>change personal info</button>
+            </div>
+          )}
         </article>
+
         <div>{idOrder && <OrderDetail idOrder={idOrder} />}</div>
       </div>
       <div>
